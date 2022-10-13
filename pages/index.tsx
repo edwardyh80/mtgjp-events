@@ -79,7 +79,7 @@ const Home: NextPage = () => {
         navigation={navigation}
       />
       <header className="bg-white shadow">
-        <div className="mx-auto max-w-7xl py-4 px-4 sm:px-6 lg:px-8 flex justify-between">
+        <div className="mx-auto max-w-7xl py-4 px-4 sm:py-6 sm:px-6 lg:px-8 flex justify-between">
           <h1 className="text-3xl font-bold tracking-tight text-gray-900">
             {navigation[tab].name}
           </h1>
@@ -94,7 +94,13 @@ const Home: NextPage = () => {
               setOpenModal={setOpenModal}
               setModalContent={setModalContent}
             />
-            <p className="text-gray-900 mt-2">
+            <p className="text-gray-900 mt-2 mb-4">
+              ※{" "}
+              {t(
+                "Before attending, please contact tournament organizers to verify event details and reservation methods."
+              )}
+            </p>
+            <p className="text-gray-900">
               {t("Last updated")}:{" "}
               {lastUpdatedQuery.data?.time &&
                 new Date(lastUpdatedQuery.data?.time).toLocaleString()}
@@ -109,7 +115,15 @@ const Home: NextPage = () => {
         <div className="mx-auto max-w-7xl pt-6 py-24 px-4 sm:px-6 lg:px-8 border-t border-slate-200 sm:flex justify-between text-slate-500 dark:border-slate-200/5">
           <div className="mb-6 sm:mb-0 sm:flex">
             <p>
-              Powered by <SiVercel className="inline h-4 w-4" />
+              Powered by{" "}
+              <a
+                className="hover:text-slate-900 dark:hover:text-slate-400 p-1"
+                href="https://vercel.com/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <SiVercel className="inline h-4 w-4" />
+              </a>
             </p>
             <p className="sm:ml-4 sm:pl-4 sm:border-l sm:border-slate-200 dark:sm:border-slate-200/5">
               Made with ❤️ by{" "}
@@ -125,7 +139,7 @@ const Home: NextPage = () => {
           </div>
           <div className="flex space-x-4 text-slate-400 dark:text-slate-500">
             <a
-              className="hover:text-slate-500 dark:hover:text-slate-400 p-1"
+              className="hover:text-slate-900 dark:hover:text-slate-400 p-1"
               href="https://github.com/edwardyh80/mtgjp-events"
               target="_blank"
               rel="noreferrer"
@@ -133,7 +147,7 @@ const Home: NextPage = () => {
               <BsGithub className="h-6 w-6" />
             </a>
             <a
-              className="hover:text-slate-500 dark:hover:text-slate-400 p-1"
+              className="hover:text-slate-900 dark:hover:text-slate-400 p-1"
               href="https://twitter.com/asuka_mtg"
               target="_blank"
               rel="noreferrer"

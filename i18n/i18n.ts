@@ -60,6 +60,8 @@ const resources = {
       PWCS: "PWCS",
       Phone: "電話番号",
       Pioneer: "パイオニア",
+      "Before attending, please contact tournament organizers to verify event details and reservation methods.":
+        "必ず参加前に店舗へ開催可否や予約方法などの確認を行ってください。",
       Prefecture: "開催地",
       Saga: "佐賀県",
       Saitama: "埼玉県",

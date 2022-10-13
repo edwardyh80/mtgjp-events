@@ -92,7 +92,7 @@ const FilterForm: FC<{
                                 filterForm[filter.id as keyof typeof filterForm]
                               ).filter((n) => n === true).length >= 5
                             }
-                            className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                            className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 disabled:opacity-25 disabled:cursor-not-allowed"
                           />
                           <label
                             htmlFor={`filter-${filter.id}-${item}`}
