@@ -1,6 +1,7 @@
 import type { AppProps } from "next/app";
 import Script from "next/script";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Analytics } from "@vercel/analytics/react";
 
 import "../styles/globals.css";
 import "../i18n/i18n";
@@ -27,6 +28,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       <QueryClientProvider client={queryClient}>
         <Component {...pageProps} />
       </QueryClientProvider>
+      <Analytics />
     </>
   );
 };
