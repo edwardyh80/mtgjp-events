@@ -26,6 +26,14 @@ const handler = async (
     return res
       .status(400)
       .json({ isSuccessful: false, message: "No prefecture provided!" });
+  if (!req.query.format)
+    return res
+      .status(400)
+      .json({ isSuccessful: false, message: "No format provided!" });
+  if (!req.query.type)
+    return res
+      .status(400)
+      .json({ isSuccessful: false, message: "No type provided!" });
   for (const k of ["prefecture", "format", "type"]) {
     const q = req.query[k];
     if (q) {
