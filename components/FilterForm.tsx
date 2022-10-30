@@ -34,9 +34,37 @@ const FilterForm: FC<{
             <>
               <h3 className="-my-3 flow-root">
                 <Disclosure.Button className="flex w-full items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500">
-                  <span className="font-medium text-gray-900">
-                    {t(filter.name)}
-                  </span>
+                  <div className="flex flex-col items-start">
+                    <div className="font-medium text-gray-900">
+                      {t(filter.name)}
+                    </div>
+                    <div className="flex flex-wrap">
+                      {Object.entries(
+                        filterForm[filter.id as keyof typeof filterForm]
+                      )
+                        .filter((n) => n[1])
+                        .map((n) => (
+                          <div
+                            key={n[0]}
+                            className="flex justify-center items-center m-1 font-medium py-1 px-2 bg-white rounded-full text-gray-700 bg-gray-100 border border-gray-300 "
+                          >
+                            <div className="text-xs font-normal leading-none max-w-full flex-initial">
+                              {filter.id === "prefecture"
+                                ? t(
+                                    prefDict[
+                                      Number(n[0]) as keyof typeof prefDict
+                                    ]
+                                  )
+                                : t(
+                                    formatDict[
+                                      Number(n[0]) as keyof typeof formatDict
+                                    ]
+                                  )}
+                            </div>
+                          </div>
+                        ))}
+                    </div>
+                  </div>
                   <span className="ml-6 flex items-center">
                     {open ? (
                       <MinusIcon className="h-5 w-5" />
@@ -49,7 +77,7 @@ const FilterForm: FC<{
               <Disclosure.Panel className="pt-6">
                 {filter.sections.map((section) => (
                   <div key={section[0]}>
-                    {filter.id == "prefecture" && (
+                    {filter.id === "prefecture" && (
                       <span className="text-sm font-medium text-gray-700">
                         {t(section[0])}
                       </span>
@@ -115,7 +143,7 @@ const FilterForm: FC<{
                               />
                             )}
                             {t(
-                              filter.id == "prefecture"
+                              filter.id === "prefecture"
                                 ? prefDict[item as keyof typeof prefDict]
                                 : formatDict[item as keyof typeof formatDict]
                             )}
