@@ -21,7 +21,8 @@ const Filter: FC<{
   setOpenFilter: Dispatch<SetStateAction<boolean>>;
   filter: IFilter;
   setFilter: Dispatch<SetStateAction<IFilter>>;
-}> = ({ openFilter, setOpenFilter, filter, setFilter }) => {
+  setFirstVisit: Dispatch<SetStateAction<boolean>>;
+}> = ({ openFilter, setOpenFilter, filter, setFilter, setFirstVisit }) => {
   const { t } = useTranslation();
   const initFilterForm: IFilterForm = {
     prefecture: filter.prefecture.reduce((acc, n) => {
@@ -34,7 +35,8 @@ const Filter: FC<{
     }, initFormatDictForm),
   };
   const [filterForm, setFilterForm] = useState(initFilterForm);
-  const applyFilter = () =>
+  const applyFilter = () => {
+    setFirstVisit(false);
     setFilter({
       prefecture: Object.entries(filterForm.prefecture)
         .filter((n) => n[1] === true)
@@ -43,6 +45,8 @@ const Filter: FC<{
         .filter((n) => n[1] === true)
         .map((n) => Number(n[0])),
     });
+  };
+
   return (
     <Transition.Root show={openFilter} as={Fragment}>
       <Dialog

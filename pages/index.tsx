@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useQuery } from "@tanstack/react-query";
 import { useLocalStorage } from "usehooks-ts";
@@ -10,6 +10,7 @@ import { BsGithub, BsTwitter } from "react-icons/bs";
 import { SiVercel } from "react-icons/si";
 
 import { IEvent, IFilter, IResponse } from "../types";
+import Banner from "../components/Banner";
 import Filter from "../components/Filter";
 import Modal from "../components/Modal";
 import Navbar from "../components/Navbar";
@@ -31,6 +32,11 @@ const Home: NextPage = () => {
     prefecture: [13, 14],
     format: [1],
   });
+  const [firstVisit, setFirstVisit] = useLocalStorage("first_visit", true);
+  const [isFirstVisit, setIsFirstVisit] = useState(false);
+  useEffect(() => {
+    setIsFirstVisit(firstVisit);
+  }, [firstVisit]);
   const eventsQuery = useQuery(
     ["events", tab, filter],
     () =>
@@ -72,11 +78,13 @@ const Home: NextPage = () => {
         <title>{t("MTG-JP Event Calendar")}</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
+      {isFirstVisit && <Banner />}
       <Navbar
         tab={tab}
         setTab={setTab}
         setOpenFilter={setOpenFilter}
         navigation={navigation}
+        isFirstVisit={isFirstVisit}
       />
       <header className="bg-white shadow">
         <div className="mx-auto max-w-7xl py-4 px-4 sm:py-6 sm:px-6 lg:px-8 flex justify-between">
@@ -169,6 +177,7 @@ const Home: NextPage = () => {
         setOpenFilter={setOpenFilter}
         filter={filter}
         setFilter={setFilter}
+        setFirstVisit={setFirstVisit}
       />
     </div>
   );

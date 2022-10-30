@@ -17,7 +17,8 @@ const Navbar: FC<{
   setTab: Dispatch<SetStateAction<number>>;
   setOpenFilter: Dispatch<SetStateAction<boolean>>;
   navigation: { name: string }[];
-}> = ({ tab, setTab, setOpenFilter, navigation }) => {
+  isFirstVisit: boolean;
+}> = ({ tab, setTab, setOpenFilter, navigation, isFirstVisit }) => {
   const { i18n } = useTranslation();
   const isJa = i18n.language === "ja";
   const switchLanguage = () => i18n.changeLanguage(isJa ? "en" : "ja");
@@ -58,7 +59,10 @@ const Navbar: FC<{
                 <div className="ml-4 flex items-center md:ml-6 space-x-4">
                   <button
                     type="button"
-                    className="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                    className={
+                      "rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" +
+                      (isFirstVisit ? " glow" : "")
+                    }
                     onClick={openFilter}
                   >
                     <FunnelIcon className="h-6 w-6" />
@@ -76,7 +80,10 @@ const Navbar: FC<{
                 <div className="flex items-center px-4 space-x-4">
                   <button
                     type="button"
-                    className="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                    className={
+                      "rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" +
+                      (isFirstVisit ? " glow" : "")
+                    }
                     onClick={openFilter}
                   >
                     <FunnelIcon className="h-6 w-6" />

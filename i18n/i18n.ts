@@ -62,6 +62,8 @@ const resources = {
       Pioneer: "パイオニア",
       "Before attending, please contact tournament organizers to verify event details and reservation methods.":
         "必ず参加前に店舗へ開催可否や予約方法などの確認を行ってください。",
+      "Please change filter settings.":
+        "初めに絞り込み条件を設定してください。",
       Prefecture: "開催地",
       Saga: "佐賀県",
       Saitama: "埼玉県",
@@ -81,6 +83,8 @@ const resources = {
       Toyama: "富山県",
       Vintage: "ヴィンテージ",
       Wakayama: "和歌山県",
+      "Welcome to MTG Event Calendar! Please change filter settings.":
+        "MTGイベントカレンダーへようこそ！初めに絞り込み条件を設定してください。",
       Yamagata: "山形県",
       Yamaguchi: "山口県",
       Yamanashi: "山梨県",
