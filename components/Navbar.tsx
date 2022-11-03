@@ -1,5 +1,3 @@
-import { Dispatch, FC, SetStateAction } from "react";
-import { useTranslation } from "react-i18next";
 import { Disclosure } from "@headlessui/react";
 import {
   Bars3Icon,
@@ -7,6 +5,8 @@ import {
   LanguageIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
+import { Dispatch, FC, SetStateAction } from "react";
+import { useTranslation } from "react-i18next";
 
 const classNames = (...classes: string[]) => {
   return classes.filter(Boolean).join(" ");
@@ -21,7 +21,7 @@ const Navbar: FC<{
 }> = ({ tab, setTab, setOpenFilter, navigation, isFirstVisit }) => {
   const { i18n } = useTranslation();
   const isJa = i18n.language === "ja";
-  const switchLanguage = () => i18n.changeLanguage(isJa ? "en" : "ja");
+  const switchLanguage = () => void i18n.changeLanguage(isJa ? "en" : "ja");
   const openFilter = () => setOpenFilter(true);
 
   return (

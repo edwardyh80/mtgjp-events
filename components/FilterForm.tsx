@@ -1,10 +1,10 @@
-import { Dispatch, FC, SetStateAction } from "react";
-import { useTranslation } from "react-i18next";
+import { prefCat, prefDict, formatDict, formatColorDict } from "../dict";
+import { IFilterForm } from "../types";
+
 import { Disclosure } from "@headlessui/react";
 import { MinusIcon, PlusIcon } from "@heroicons/react/20/solid";
-
-import { IFilterForm } from "../types";
-import { prefCat, prefDict, formatDict, formatColorDict } from "../dict";
+import { Dispatch, FC, SetStateAction } from "react";
+import { useTranslation } from "react-i18next";
 
 const filters: { id: string; name: string; sections: [string, number[]][] }[] =
   [
@@ -38,7 +38,7 @@ const FilterForm: FC<{
                     <div className="font-medium text-gray-900">
                       {t(filter.name)}
                     </div>
-                    <div className="flex flex-wrap">
+                    <div className="flex flex-wrap space-x-1">
                       {Object.entries(
                         filterForm[filter.id as keyof typeof filterForm]
                       )
@@ -46,20 +46,18 @@ const FilterForm: FC<{
                         .map((n) => (
                           <div
                             key={n[0]}
-                            className="flex justify-center items-center m-1 font-medium py-1 px-2 bg-white rounded-full text-gray-700 bg-gray-100 border border-gray-300 "
+                            className="flex justify-center items-center my-1 font-medium py-1 px-2 bg-gray-100 rounded-full text-gray-700 border border-gray-300"
                           >
                             <div className="text-xs font-normal leading-none max-w-full flex-initial">
-                              {filter.id === "prefecture"
-                                ? t(
-                                    prefDict[
+                              {t(
+                                filter.id === "prefecture"
+                                  ? prefDict[
                                       Number(n[0]) as keyof typeof prefDict
                                     ]
-                                  )
-                                : t(
-                                    formatDict[
+                                  : formatDict[
                                       Number(n[0]) as keyof typeof formatDict
                                     ]
-                                  )}
+                              )}
                             </div>
                           </div>
                         ))}

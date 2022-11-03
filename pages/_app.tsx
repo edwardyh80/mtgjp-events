@@ -1,10 +1,11 @@
-import type { AppProps } from "next/app";
-import Script from "next/script";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Analytics } from "@vercel/analytics/react";
+import Script from "next/script";
+
+import type { AppProps } from "next/app";
 
 import "../styles/globals.css";
-import "../i18n/i18n";
+import "../i18n";
 
 const queryClient = new QueryClient();
 

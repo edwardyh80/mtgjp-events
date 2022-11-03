@@ -1,12 +1,13 @@
-import type { NextApiRequest, NextApiResponse } from "next";
-import { Filter } from "mongodb";
-import axios from "axios";
+import { IEvent, IEventsResponse } from "../../types";
 
-import { IEvent, IResponse } from "../../types";
+import axios from "axios";
+import { Filter } from "mongodb";
+
+import type { NextApiRequest, NextApiResponse } from "next";
 
 const handler = async (
   req: NextApiRequest,
-  res: NextApiResponse<IResponse>
+  res: NextApiResponse<IEventsResponse>
 ) => {
   if (!process.env.MONGODB_ENDPOINT || !process.env.MONGODB_API_KEY) {
     return res

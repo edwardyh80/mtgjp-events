@@ -1,13 +1,19 @@
-import type { NextApiRequest, NextApiResponse } from "next";
+import { ILastUpdated, ILastUpdatedResponse } from "../../types";
+
 import axios from "axios";
 
-const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+import type { NextApiRequest, NextApiResponse } from "next";
+
+const handler = async (
+  req: NextApiRequest,
+  res: NextApiResponse<ILastUpdatedResponse>
+) => {
   if (!process.env.MONGODB_ENDPOINT || !process.env.MONGODB_API_KEY) {
     return res
       .status(500)
       .json({ isSuccessful: false, message: "Check database credentials!" });
   }
-  const response = await axios.post(
+  const response = await axios.post<{ documents: ILastUpdated[] }>(
     `${process.env.MONGODB_ENDPOINT}/action/find`,
     {
       collection: "last_updated",

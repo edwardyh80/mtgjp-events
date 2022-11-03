@@ -1,10 +1,11 @@
+import FilterForm from "./FilterForm";
+
+import { prefDict, formatDict } from "../dict";
+import { IFilter, IFilterForm } from "../types";
+
+import { Dialog, Transition } from "@headlessui/react";
 import { Dispatch, FC, Fragment, SetStateAction, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Dialog, Transition } from "@headlessui/react";
-
-import { IFilter, IFilterForm } from "../types";
-import { prefDict, formatDict } from "../dict";
-import FilterForm from "./FilterForm";
 
 type numBoolDict = { [k: number]: boolean };
 const [initPrefDictForm, initFormatDictForm] = [prefDict, formatDict].map((d) =>

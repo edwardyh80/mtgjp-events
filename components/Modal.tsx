@@ -1,9 +1,9 @@
+import { prefDict, formatDict, formatColorDict } from "../dict";
+import { IEvent } from "../types";
+
+import { Dialog, Transition } from "@headlessui/react";
 import { Dispatch, FC, Fragment, SetStateAction } from "react";
 import { useTranslation } from "react-i18next";
-import { Dialog, Transition } from "@headlessui/react";
-
-import { IEvent } from "../types";
-import { prefDict, formatDict, formatColorDict } from "../dict";
 
 const Modal: FC<{
   openModal: boolean;

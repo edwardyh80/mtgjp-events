@@ -12,10 +12,22 @@ export interface IEvent {
   type: number;
 }
 
-export interface IResponse {
+export interface ILastUpdated {
+  _id: string;
+  time: string;
+  event_count: number;
+}
+
+export interface IEventsResponse {
   isSuccessful: boolean;
   message?: string;
   documents?: IEvent[];
+}
+
+export interface ILastUpdatedResponse {
+  isSuccessful: boolean;
+  message?: string;
+  documents?: ILastUpdated[];
 }
 
 export interface IFilter {

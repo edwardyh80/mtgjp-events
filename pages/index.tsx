@@ -1,22 +1,26 @@
-import type { NextPage } from "next";
-import Head from "next/head";
-import { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { useQuery } from "@tanstack/react-query";
-import { useLocalStorage } from "usehooks-ts";
-import axios from "axios";
-import qs from "qs";
-import { BsGithub, BsTwitter } from "react-icons/bs";
-import { SiVercel } from "react-icons/si";
-
-import { IEvent, IFilter, IResponse } from "../types";
 import Banner from "../components/Banner";
 import Filter from "../components/Filter";
+import Footer from "../components/Footer";
 import Modal from "../components/Modal";
 import Navbar from "../components/Navbar";
 import Spinner from "../components/Spinner";
+import {
+  IEvent,
+  IFilter,
+  IEventsResponse,
+  ILastUpdatedResponse,
+} from "../types";
 
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 import dynamic from "next/dynamic";
+import Head from "next/head";
+import qs from "qs";
+import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { useLocalStorage } from "usehooks-ts";
+
+import type { NextPage } from "next";
 const Calendar = dynamic(() => import("../components/Calendar"), {
   ssr: false,
 });
@@ -41,7 +45,7 @@ const Home: NextPage = () => {
     ["events", tab, filter],
     () =>
       axios
-        .get<IResponse>("/api/events", {
+        .get<IEventsResponse>("/api/events", {
           params: {
             type: tab,
             ...filter,
@@ -58,7 +62,10 @@ const Home: NextPage = () => {
   );
   const lastUpdatedQuery = useQuery(
     ["last_updated"],
-    () => axios.get("/api/last_updated").then((r) => r.data.documents[0]),
+    () =>
+      axios
+        .get<ILastUpdatedResponse>("/api/last_updated")
+        .then((r) => r.data.documents?.[0]),
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
@@ -119,52 +126,7 @@ const Home: NextPage = () => {
           </div>
         </div>
       </main>
-      <footer className="text-sm leading-6 mt-16">
-        <div className="mx-auto max-w-7xl pt-6 py-24 px-4 sm:px-6 lg:px-8 border-t border-slate-200 sm:flex justify-between text-slate-500 dark:border-slate-200/5">
-          <div className="mb-6 sm:mb-0 sm:flex">
-            <p>
-              Powered by{" "}
-              <a
-                className="hover:text-slate-900 dark:hover:text-slate-400 p-1"
-                href="https://vercel.com/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <SiVercel className="inline h-4 w-4" />
-              </a>
-            </p>
-            <p className="sm:ml-4 sm:pl-4 sm:border-l sm:border-slate-200 dark:sm:border-slate-200/5">
-              Made with ❤️ by{" "}
-              <a
-                className="hover:text-slate-900 dark:hover:text-slate-400"
-                href="https://twitter.com/asuka_mtg"
-                target="_blank"
-                rel="noreferrer"
-              >
-                @asuka_mtg
-              </a>
-            </p>
-          </div>
-          <div className="flex space-x-4 text-slate-400 dark:text-slate-500">
-            <a
-              className="hover:text-slate-900 dark:hover:text-slate-400 p-1"
-              href="https://github.com/edwardyh80/mtgjp-events"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <BsGithub className="h-6 w-6" />
-            </a>
-            <a
-              className="hover:text-slate-900 dark:hover:text-slate-400 p-1"
-              href="https://twitter.com/asuka_mtg"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <BsTwitter className="h-6 w-6" />
-            </a>
-          </div>
-        </div>
-      </footer>
+      <Footer />
       {modalContent && (
         <Modal
           openModal={openModal}

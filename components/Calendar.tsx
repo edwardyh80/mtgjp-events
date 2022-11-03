@@ -1,13 +1,13 @@
+import { formatColorDict } from "../dict";
+import { IEvent } from "../types";
+
+import FullCalendar from "@fullcalendar/react"; // eslint-disable-line
+import jaLocale from "@fullcalendar/core/locales/ja";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import listPlugin from "@fullcalendar/list";
 import { Dispatch, FC, SetStateAction, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { useWindowSize } from "usehooks-ts";
-import FullCalendar from "@fullcalendar/react";
-import dayGridPlugin from "@fullcalendar/daygrid";
-import listPlugin from "@fullcalendar/list";
-import jaLocale from "@fullcalendar/core/locales/ja";
-
-import { IEvent } from "../types";
-import { formatColorDict } from "../dict";
 
 const Calendar: FC<{
   data: IEvent[];
