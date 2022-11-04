@@ -53,7 +53,7 @@ const Home: NextPage = () => {
           paramsSerializer: (params) =>
             qs.stringify(params, { arrayFormat: "repeat" }),
         })
-        .then((r) => r.data.documents),
+        .then((r) => r.data.events),
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
@@ -65,7 +65,7 @@ const Home: NextPage = () => {
     () =>
       axios
         .get<ILastUpdatedResponse>("/api/last_updated")
-        .then((r) => r.data.documents?.[0]),
+        .then((r) => r.data.lastUpdated),
     {
       refetchOnMount: false,
       refetchOnReconnect: false,

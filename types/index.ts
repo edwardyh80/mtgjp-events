@@ -21,13 +21,13 @@ export interface ILastUpdated {
 export interface IEventsResponse {
   isSuccessful: boolean;
   message?: string;
-  documents?: IEvent[];
+  events?: IEvent[];
 }
 
 export interface ILastUpdatedResponse {
   isSuccessful: boolean;
   message?: string;
-  documents?: ILastUpdated[];
+  lastUpdated?: ILastUpdated;
 }
 
 export interface IFilter {

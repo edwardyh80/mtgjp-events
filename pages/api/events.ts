@@ -1,6 +1,6 @@
+import clientPromise from "../../lib/mongodb";
 import { IEvent, IEventsResponse } from "../../types";
 
-import axios from "axios";
 import { Filter } from "mongodb";
 
 import type { NextApiRequest, NextApiResponse } from "next";
@@ -9,20 +9,6 @@ const handler = async (
   req: NextApiRequest,
   res: NextApiResponse<IEventsResponse>
 ) => {
-  if (!process.env.MONGODB_ENDPOINT || !process.env.MONGODB_API_KEY) {
-    return res
-      .status(500)
-      .json({ isSuccessful: false, message: "Check database credentials!" });
-  }
-  const filter: Filter<IEvent> = {
-    time: {
-      $gte: {
-        // eslint-disable-next-line
-        // @ts-ignore
-        $date: { $numberLong: new Date().setHours(0, 0, 0, 0).toString() },
-      },
-    },
-  };
   if (!req.query.prefecture)
     return res
       .status(400)
@@ -35,6 +21,7 @@ const handler = async (
     return res
       .status(400)
       .json({ isSuccessful: false, message: "No type provided!" });
+  const filter: Filter<IEvent> = {};
   for (const k of ["prefecture", "format", "type"]) {
     const q = req.query[k];
     if (q) {
@@ -47,24 +34,18 @@ const handler = async (
       }
     }
   }
-  const response = await axios.post<{ documents: IEvent[] }>(
-    `${process.env.MONGODB_ENDPOINT}/action/find`,
-    {
-      collection: "events",
-      database: "mtg",
-      dataSource: "Cluster0",
-      filter,
-    },
-    {
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Request-Headers": "*",
-        "api-key": process.env.MONGODB_API_KEY,
-      },
-    }
-  );
-  const documents = response.data.documents;
-  res.status(200).json({ isSuccessful: true, documents });
+
+  const client = await clientPromise;
+  const db = client.db("mtg");
+
+  const events = await db
+    .collection("events")
+    .find<IEvent>({
+      ...filter,
+      time: { $gte: new Date(new Date().setHours(0, 0, 0, 0)) },
+    })
+    .toArray();
+  res.status(200).json({ isSuccessful: true, events });
 };
 
 export default handler;

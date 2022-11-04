@@ -1,6 +1,5 @@
+import clientPromise from "../../lib/mongodb";
 import { ILastUpdated, ILastUpdatedResponse } from "../../types";
-
-import axios from "axios";
 
 import type { NextApiRequest, NextApiResponse } from "next";
 
@@ -8,30 +7,16 @@ const handler = async (
   req: NextApiRequest,
   res: NextApiResponse<ILastUpdatedResponse>
 ) => {
-  if (!process.env.MONGODB_ENDPOINT || !process.env.MONGODB_API_KEY) {
-    return res
-      .status(500)
-      .json({ isSuccessful: false, message: "Check database credentials!" });
-  }
-  const response = await axios.post<{ documents: ILastUpdated[] }>(
-    `${process.env.MONGODB_ENDPOINT}/action/find`,
-    {
-      collection: "last_updated",
-      database: "mtg",
-      dataSource: "Cluster0",
-      sort: { time: -1 },
-      limit: 1,
-    },
-    {
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Request-Headers": "*",
-        "api-key": process.env.MONGODB_API_KEY,
-      },
-    }
-  );
-  const documents = response.data.documents;
-  res.status(200).json({ isSuccessful: true, documents });
+  const client = await clientPromise;
+  const db = client.db("mtg");
+
+  const lastUpdated = await db
+    .collection("last_updated")
+    .find<ILastUpdated>({})
+    .sort({ time: -1 })
+    .limit(1)
+    .toArray();
+  res.status(200).json({ isSuccessful: true, lastUpdated: lastUpdated[0] });
 };
 
 export default handler;
