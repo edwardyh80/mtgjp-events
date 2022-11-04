@@ -2,6 +2,7 @@ import clientPromise from "../../lib/mongodb";
 import { IEvent, IEventsResponse } from "../../types";
 
 import { Filter } from "mongodb";
+import { withAxiom } from "next-axiom";
 
 import type { NextApiRequest, NextApiResponse } from "next";
 
@@ -48,4 +49,4 @@ const handler = async (
   res.status(200).json({ isSuccessful: true, events });
 };
 
-export default handler;
+export default withAxiom(handler);

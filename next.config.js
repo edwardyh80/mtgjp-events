@@ -5,6 +5,8 @@ const nextConfig = {
 };
 
 // eslint-disable-next-line
+const { withAxiom } = require("next-axiom");
+// eslint-disable-next-line
 const withTM = require("next-transpile-modules")([
   "@fullcalendar/common",
   "@fullcalendar/react",
@@ -12,4 +14,4 @@ const withTM = require("next-transpile-modules")([
   "@fullcalendar/list",
 ]);
 
-module.exports = withTM(nextConfig);
+module.exports = withAxiom(withTM(nextConfig));

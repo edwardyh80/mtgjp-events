@@ -1,6 +1,8 @@
 import clientPromise from "../../lib/mongodb";
 import { ILastUpdated, ILastUpdatedResponse } from "../../types";
 
+import { withAxiom } from "next-axiom";
+
 import type { NextApiRequest, NextApiResponse } from "next";
 
 const handler = async (
@@ -19,4 +21,4 @@ const handler = async (
   res.status(200).json({ isSuccessful: true, lastUpdated: lastUpdated[0] });
 };
 
-export default handler;
+export default withAxiom(handler);

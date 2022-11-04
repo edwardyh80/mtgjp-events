@@ -35,3 +35,5 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
 };
 
 export default MyApp;
+
+export { reportWebVitals } from "next-axiom";
