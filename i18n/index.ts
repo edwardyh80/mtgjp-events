@@ -23,7 +23,6 @@ const resources = {
       Fukui: "福井県",
       Fukuoka: "福岡県",
       Fukushima: "福島県",
-      "Game Day": "ゲームデー",
       Gifu: "岐阜県",
       Gunma: "群馬県",
       Hiroshima: "広島県",

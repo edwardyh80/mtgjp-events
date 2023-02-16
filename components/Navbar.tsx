@@ -16,7 +16,7 @@ const Navbar: FC<{
   tab: number;
   setTab: Dispatch<SetStateAction<number>>;
   setOpenFilter: Dispatch<SetStateAction<boolean>>;
-  navigation: { name: string }[];
+  navigation: { name: string; id: number }[];
   isFirstVisit: boolean;
 }> = ({ tab, setTab, setOpenFilter, navigation, isFirstVisit }) => {
   const { i18n } = useTranslation();
@@ -38,18 +38,18 @@ const Navbar: FC<{
                 </div>
                 <div className="hidden md:block">
                   <div className="ml-10 flex items-baseline space-x-4">
-                    {navigation.map((item, i) => (
+                    {navigation.map(({ name, id }) => (
                       <a
-                        key={item.name}
-                        onClick={() => setTab(i)}
+                        key={name}
+                        onClick={() => setTab(id)}
                         className={classNames(
-                          tab === i
+                          tab === id
                             ? "bg-gray-900 text-white"
                             : "text-gray-300 hover:bg-gray-700 hover:text-white",
                           "px-3 py-2 rounded-md text-sm font-medium cursor-pointer"
                         )}
                       >
-                        {item.name}
+                        {name}
                       </a>
                     ))}
                   </div>
@@ -108,19 +108,19 @@ const Navbar: FC<{
           </div>
           <Disclosure.Panel className="md:hidden">
             <div className="space-y-1 px-2 pt-2 pb-3 sm:px-3">
-              {navigation.map((item, i) => (
+              {navigation.map(({ name, id }) => (
                 <Disclosure.Button
-                  key={item.name}
+                  key={name}
                   as="a"
-                  onClick={() => setTab(i)}
+                  onClick={() => setTab(id)}
                   className={classNames(
-                    tab === i
+                    tab === id
                       ? "bg-gray-900 text-white"
                       : "text-gray-300 hover:bg-gray-700 hover:text-white",
                     "block px-3 py-2 rounded-md text-base font-medium cursor-pointer"
                   )}
                 >
-                  {item.name}
+                  {name}
                 </Disclosure.Button>
               ))}
             </div>
