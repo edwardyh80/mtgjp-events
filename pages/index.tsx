@@ -95,7 +95,7 @@ const Home: NextPage = () => {
       <header className="bg-white shadow">
         <div className="mx-auto max-w-7xl py-4 px-4 sm:py-6 sm:px-6 lg:px-8 flex justify-between">
           <h1 className="text-3xl font-bold tracking-tight text-gray-900">
-            {navigation[tab].name}
+            {navigation.find((n) => n.id === tab)?.name}
           </h1>
           {eventsQuery.isFetching && <Spinner />}
         </div>
