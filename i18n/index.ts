@@ -57,6 +57,7 @@ const resources = {
       Okinawa: "沖縄県",
       Osaka: "大阪府",
       PWCS: "PWCS",
+      PWFM: "PWFM",
       Phone: "電話番号",
       Pioneer: "パイオニア",
       "Before attending, please contact tournament organizers to verify event details and reservation methods.":
