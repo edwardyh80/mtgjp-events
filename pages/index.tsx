@@ -31,7 +31,7 @@ const Home: NextPage = () => {
   const [modalContent, setModalContent] = useState<IEvent | undefined>(
     undefined
   );
-  const [tab, setTab] = useState(0);
+  const [tab, setTab] = useState(3);
   const [filter, setFilter] = useLocalStorage<IFilter>("event_filter", {
     prefecture: [13, 14],
     format: [1],
