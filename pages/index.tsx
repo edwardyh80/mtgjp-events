@@ -74,7 +74,6 @@ const Home: NextPage = () => {
   );
   const { t } = useTranslation();
   const navigation = [
-    { name: t("PWCS"), id: 0 },
     { name: t("PWFM"), id: 3 },
     { name: t("Store Championship"), id: 2 },
   ];

@@ -56,7 +56,6 @@ const resources = {
       Okayama: "岡山県",
       Okinawa: "沖縄県",
       Osaka: "大阪府",
-      PWCS: "PWCS",
       PWFM: "PWFM",
       Phone: "電話番号",
       Pioneer: "パイオニア",
