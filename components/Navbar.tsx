@@ -46,7 +46,7 @@ const Navbar: FC<{
                           tab === id
                             ? "bg-gray-900 text-white"
                             : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                          "px-3 py-2 rounded-md text-sm font-medium cursor-pointer"
+                          "cursor-pointer rounded-md px-3 py-2 text-sm font-medium"
                         )}
                       >
                         {name}
@@ -56,7 +56,7 @@ const Navbar: FC<{
                 </div>
               </div>
               <div className="hidden md:block">
-                <div className="ml-4 flex items-center md:ml-6 space-x-4">
+                <div className="ml-4 flex items-center space-x-4 md:ml-6">
                   <button
                     type="button"
                     className={
@@ -77,7 +77,7 @@ const Navbar: FC<{
                 </div>
               </div>
               <div className="-mr-2 flex md:hidden">
-                <div className="flex items-center px-4 space-x-4">
+                <div className="flex items-center space-x-4 px-4">
                   <button
                     type="button"
                     className={
@@ -117,7 +117,7 @@ const Navbar: FC<{
                     tab === id
                       ? "bg-gray-900 text-white"
                       : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                    "block px-3 py-2 rounded-md text-base font-medium cursor-pointer"
+                    "block cursor-pointer rounded-md px-3 py-2 text-base font-medium"
                   )}
                 >
                   {name}

@@ -92,9 +92,9 @@ const Home: NextPage = () => {
         navigation={navigation}
         isFirstVisit={isFirstVisit}
       />
-      <header className="bg-white shadow">
-        <div className="mx-auto max-w-7xl py-4 px-4 sm:py-6 sm:px-6 lg:px-8 flex justify-between">
-          <h1 className="text-3xl font-bold tracking-tight text-gray-900">
+      <header className="border-b dark:border-slate-500">
+        <div className="mx-auto flex max-w-7xl justify-between py-4 px-4 sm:py-6 sm:px-6 lg:px-8">
+          <h1 className="text-3xl font-bold tracking-tight">
             {navigation.find((n) => n.id === tab)?.name}
           </h1>
           {eventsQuery.isFetching && <Spinner />}
@@ -108,18 +108,18 @@ const Home: NextPage = () => {
               setOpenModal={setOpenModal}
               setModalContent={setModalContent}
             />
-            <p className="text-gray-900 mt-2 mb-4">
+            <p className="mt-2 mb-4">
               ※{" "}
               {t(
                 "Before attending, please contact tournament organizers to verify event details and reservation methods."
               )}
             </p>
-            <p className="text-gray-900">
+            <p>
               {t("Last updated")}:{" "}
               {lastUpdatedQuery.data?.time &&
                 new Date(lastUpdatedQuery.data?.time).toLocaleString()}
             </p>
-            <p className="text-gray-900">
+            <p>
               {t("Event count")}: {lastUpdatedQuery.data?.event_count}
             </p>
           </div>

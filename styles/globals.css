@@ -55,3 +55,13 @@ a {
   border-radius: 50%;
   box-shadow: 0 0 6px 3px #fff, 0 0 10px 6px #6366f1, 0 0 14px 9px #3b82f6 !important;
 }
+
+@media (prefers-color-scheme: dark) {
+  .fc-list-day-cushion {
+    background: var(--fc-button-bg-color, #2c3e50) !important;
+    color: #fff;
+  }
+  .fc-list-empty-cushion {
+    color: #fff;
+  }
+}

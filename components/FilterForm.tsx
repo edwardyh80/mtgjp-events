@@ -46,9 +46,9 @@ const FilterForm: FC<{
                         .map((n) => (
                           <div
                             key={n[0]}
-                            className="flex justify-center items-center my-1 font-medium py-1 px-2 bg-gray-100 rounded-full text-gray-700 border border-gray-300"
+                            className="my-1 flex items-center justify-center rounded-full border border-gray-300 bg-gray-100 py-1 px-2 font-medium text-gray-700"
                           >
-                            <div className="text-xs font-normal leading-none max-w-full flex-initial">
+                            <div className="max-w-full flex-initial text-xs font-normal leading-none">
                               {t(
                                 filter.id === "prefecture"
                                   ? prefDict[
@@ -80,7 +80,7 @@ const FilterForm: FC<{
                         {t(section[0])}
                       </span>
                     )}
-                    <div className="flex flex-wrap my-2 gap-y-2">
+                    <div className="my-2 flex flex-wrap gap-y-2">
                       {section[1].map((item) => (
                         <div
                           key={`filter-${filter.id}-${item}`}
@@ -118,7 +118,7 @@ const FilterForm: FC<{
                                 filterForm[filter.id as keyof typeof filterForm]
                               ).filter((n) => n === true).length >= 5
                             }
-                            className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 disabled:opacity-25 disabled:cursor-not-allowed"
+                            className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 disabled:cursor-not-allowed disabled:opacity-25"
                           />
                           <label
                             htmlFor={`filter-${filter.id}-${item}`}
