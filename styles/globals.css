@@ -58,10 +58,13 @@ a {
 
 @media (prefers-color-scheme: dark) {
   .fc-list-day-cushion {
-    background: var(--fc-button-bg-color, #2c3e50) !important;
+    background: #2c3e50 !important;
     color: #fff;
   }
   .fc-list-empty-cushion {
     color: #fff;
+  }
+  .fc-list-event td {
+    background: #000 !important;
   }
 }
